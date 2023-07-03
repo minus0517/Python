@@ -1,0 +1,59 @@
+from tkinter import *
+    
+def add_numbers():
+    a = float(a_var.get())
+    b = float(1.125)
+    d = float(d_var.get())
+    c = float(a)
+    output2 = ((c-(a * b / 100))-d)
+    output = (c-(a * b / 100))
+    #result_var.set(str(c-(a * b / 100)))
+    #result_var2.set(str((c-(a * b / 100))-d))
+    txt = "{:,.1f}"
+    txt2 = "{:,}"
+    result_var.set(txt.format(output).replace(',', ' ')+"$")
+    result_var2.set(txt.format(output2).replace(',', ' ')+"$")
+    print("\n" + "Jeśli A = " + txt2.format(a).replace(',', ' ') + " D = " + txt2.format(d).replace(',', ' '))
+    print("Bazar po podatkach: " + txt2.format(c-(a * b / 100)).replace(',', ' ')+"$")
+    print("Profit: " + txt2.format((c-(a * b / 100))-d).replace(',', ' ') + "$" + "\n =================")
+
+
+root = Tk()
+root.geometry("320x260")
+root.title("tax calc: 1.125%")
+
+# Use tkinter variables to talk to entry widgets
+a_var = StringVar()
+d_var = StringVar()
+b_var = StringVar()   
+result_var = StringVar()
+result_var2 = StringVar()
+
+thing = Label(root, text='MAX')
+thing.grid(row=0, column=0)
+ 
+thing = Entry(root, textvar=a_var, justify=RIGHT)
+thing.grid(row=0, column=1)
+
+thing = Label(root, text='MIN')
+thing.grid(row=1, column=0)
+ 
+thing = Entry(root, textvar=d_var, justify=RIGHT)
+thing.grid(row=1, column=1)
+    
+thing = Button(root, text='TAX', command=add_numbers)
+thing.grid(row=2, column=1)
+ 
+thing = Label(root, text='tax')
+thing.grid(row=3, column=0)
+ 
+thing = Entry(root, textvar=result_var, justify=RIGHT, state="readonly")
+thing.grid(row=3, column=1)
+
+thing = Label(root, text='profit')
+thing.grid(row=4, column=0)
+
+thing = Entry(root, textvar=result_var2, justify=RIGHT, state="readonly")
+thing.grid(row=4, column=1)
+ 
+root.mainloop()
